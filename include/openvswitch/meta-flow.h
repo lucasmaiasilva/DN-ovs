@@ -1768,7 +1768,38 @@ enum OVS_PACKED_ENUM mf_field_id {
      */
     MFF_ND_TLL,
 
-    MFF_N_IDS
+    MFF_N_IDS,
+
+    /* "dn_src" (aka "dn_src").
+     *
+     *
+     * Type: be256.
+     * Maskable: no.
+     * Formatting: hexadecimal.
+     * Prerequisites: none.
+     * Access: read/write.
+     * NXM: none.
+     * OXM: none.
+     * OF1.0: exact match.
+     * Prefix lookup member: dn_src.
+     */
+    MFF_DN_SRC,
+
+    /* "dn_dst" (aka "dn_dst").
+     *
+     *
+     * Type: be256.
+     * Maskable: no.
+     * Formatting: hexadecimal.
+     * Prerequisites: none.
+     * Access: read/write.
+     * NXM: none.
+     * OXM: none.
+     * OF1.0: exact match.
+     * Prefix lookup member: dn_dst.
+     */
+    MFF_DN_DST
+
 };
 
 /* A set of mf_field_ids. */

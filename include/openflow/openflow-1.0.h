@@ -282,8 +282,10 @@ struct ofp10_match {
     ovs_be32 nw_dst;           /* IP destination address. */
     ovs_be16 tp_src;           /* TCP/UDP source port. */
     ovs_be16 tp_dst;           /* TCP/UDP destination port. */
+    uint8_t dn_src[32];
+    uint8_t dn_dst[32];
 };
-OFP_ASSERT(sizeof(struct ofp10_match) == 40);
+OFP_ASSERT(sizeof(struct ofp10_match) == 104);
 
 enum ofp10_flow_mod_flags {
     OFPFF10_EMERG       = 1 << 2 /* Part of "emergency flow cache". */
@@ -310,7 +312,7 @@ struct ofp10_flow_mod {
     /* Followed by OpenFlow actions whose length is inferred from the length
      * field in the OpenFlow header. */
 };
-OFP_ASSERT(sizeof(struct ofp10_flow_mod) == 64);
+OFP_ASSERT(sizeof(struct ofp10_flow_mod) == 128);
 
 /* Flow removed (datapath -> controller). */
 struct ofp10_flow_removed {
@@ -329,7 +331,7 @@ struct ofp10_flow_removed {
     ovs_be64 packet_count;
     ovs_be64 byte_count;
 };
-OFP_ASSERT(sizeof(struct ofp10_flow_removed) == 80);
+OFP_ASSERT(sizeof(struct ofp10_flow_removed) == 144);
 
 /* Stats request of type OFPST_AGGREGATE or OFPST_FLOW. */
 struct ofp10_flow_stats_request {
@@ -341,7 +343,7 @@ struct ofp10_flow_stats_request {
                                  as an output port.  A value of OFPP_NONE
                                  indicates no restriction. */
 };
-OFP_ASSERT(sizeof(struct ofp10_flow_stats_request) == 44);
+OFP_ASSERT(sizeof(struct ofp10_flow_stats_request) == 108);
 
 /* Body of reply to OFPST_FLOW request. */
 struct ofp10_flow_stats {
@@ -362,7 +364,7 @@ struct ofp10_flow_stats {
     ovs_32aligned_be64 byte_count;   /* Number of bytes in flow. */
     /* Followed by OpenFlow actions whose length is inferred from 'length'. */
 };
-OFP_ASSERT(sizeof(struct ofp10_flow_stats) == 88);
+OFP_ASSERT(sizeof(struct ofp10_flow_stats) == 152);
 
 /* Body of reply to OFPST_TABLE request. */
 struct ofp10_table_stats {
